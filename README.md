@@ -1,8 +1,9 @@
 # cps731_group3_f18
-Poly3D - 3D Model Database &amp; Object Viewer 
+Poly3D - 3D Model Database &amp; Object Viewer  
 
-Drew Cornfield - 500 712 585
-Mckenzie Irwin - 500 697 853
-Liyan Al
-Nigel Singh
+Drew Cornfield - 500 712 585  
+
+Mckenzie Irwin - 500 697 853  
+Liyan Al  
+Nigel Singh  
 
