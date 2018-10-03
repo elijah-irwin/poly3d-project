@@ -4,5 +4,5 @@ Poly3D - 3D Model Database &amp; Object Viewer
 Drew Cornfield - 500 712 585  
 Mckenzie Irwin - 500 697 853  
 Liyan Al  
-Nigel Singh  
+Nigel Singh  - 500 684 626
 
