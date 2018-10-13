@@ -1,0 +1,9 @@
+<% include partials/header.ejs %>
+
+<h1>You like: <%= thing %></h1>
+
+<% if(thing.toLowerCase() === "apples") { %>
+  <p>Nice choice. Apples are the best!</p>
+<% } %>
+
+<% include partials/footer.ejs %>

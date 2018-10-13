@@ -1,0 +1,15 @@
+{
+  "name": "ejsdemo",
+  "version": "1.0.0",
+  "description": "Learn how to use EJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mckenzie Irwin",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
