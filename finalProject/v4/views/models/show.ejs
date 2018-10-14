@@ -1,0 +1,21 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+  <h1><%= model.title %></h1>
+  <img src="<%= model.image %>" alt="" style="width: 100%;">
+  <p><%= model.description %></p>
+
+  <p>
+    <a href="/models/<%= model._id %>/comments/new" class="btn btn-primary">
+      Add New Comment
+    </a>
+  </p>
+
+  <% model.comments.forEach(function(comment) { %>
+    <p><%= comment.text %> - <strong><%= comment.author %></strong></p>
+  <% }); %>
+
+  <p><a href="/models">Go Back</a></p>
+</div>
+
+<% include ../partials/footer.ejs %>
