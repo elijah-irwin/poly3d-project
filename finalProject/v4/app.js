@@ -20,6 +20,19 @@ app.use(express.static(__dirname + "/public"));
 // calling our seedDB function to populate the db with test data
 seedDB();
 
+// ========== PASSPORT (LOGIN) STUFF ================
+app.use(require("express-session")({
+  secret: "Noice",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+// ===================================================
+
 // home page route
 // localhost:3000
 app.get("/", function(req,res) {
@@ -68,10 +81,7 @@ app.get("/models/:id", function(req,res) {
   });
 });
 
-// ===================
-// Comment Routes
-// ===================
-
+// ========== Comment Routes ==========
 app.get("/models/:id/comments/new", function(req,res) {
   Model3D.findById(req.params.id, function(error, model) {
     if(error) console.log(error);
@@ -96,6 +106,37 @@ app.post("/models/:id/comments", function(req,res) {
     }
   });
 });
+// ===================================
+
+
+// ========= Authentication Routes ==========
+
+// show register form
+app.get("/register", function(req,res) {
+  res.render("register.ejs");
+});
+
+// handle sign up request
+app.post("/register", function(req,res) {
+  
+  // create new User with username from form data
+  var newUser = new User({username: req.body.username});
+
+  // register the new user with that new User object and the password
+  // from the form data
+  User.register(newUser, req.body.password, function(error,user) {
+    if(error) {
+      console.log(error);
+      return res.render("register.ejs");
+    }
+
+    // if register sucessful, redirect to the models page
+    passport.authenticate("local")(req,res,function() {
+      res.redirect("/models")
+    });
+  });
+});
+
 
 // listen function for the app to determine where to host the server
 // localhost:3000
