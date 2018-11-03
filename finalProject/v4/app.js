@@ -1,17 +1,21 @@
 // requiring packages we need to make the app function
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    Model3D     = require("./schemas/models.js"),
-    seedDB      = require("./seed.js"),
-    Comment     = require("./schemas/comments.js");
+var express       = require("express"),
+    app           = express(),
+    bodyParser    = require("body-parser"),
+    mongoose      = require("mongoose"),
+    passport      = require("passport"),
+    LocalStrategy = require("passport-local"),
+    Model3D       = require("./schemas/models.js"),
+    seedDB        = require("./seed.js"),
+    Comment       = require("./schemas/comments.js"),
+    User          = require("./schemas/users.js");
 
 // connecting to the database
 mongoose.connect("mongodb://localhost/poly3d", {useNewUrlParser: true});
 
 // enables the body parser for json 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname + "/public"));
 
 // calling our seedDB function to populate the db with test data
 seedDB();
