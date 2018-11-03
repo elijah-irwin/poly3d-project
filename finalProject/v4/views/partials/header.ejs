@@ -20,9 +20,13 @@
           <a class="nav-item nav-link" href="/models">Models</a>
         </div>
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="/login">Login</a>
-          <a class="nav-item nav-link" href="/register">Register</a>
-          <a class="nav-item nav-link" href="/logout">Logout</a>
+          <% if(!currentUser) { %>
+            <a class="nav-item nav-link" href="/login">Login</a>
+            <a class="nav-item nav-link" href="/register">Register</a>
+          <% } else { %>
+            <a  class="nav-item nav-link disabled href="#">Profile: <%= currentUser.username %></a>
+            <a class="nav-item nav-link" href="/logout">Logout</a>
+          <% } %>
         </div>
       </div>
     </nav>

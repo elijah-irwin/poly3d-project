@@ -33,6 +33,11 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 // ===================================================
 
+app.use(function(req,res,next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 // home page route
 // localhost:3000
 app.get("/", function(req,res) {
@@ -89,7 +94,7 @@ app.get("/models/:id/comments/new", isLoggedIn, function(req,res) {
   });
 });
 
-app.post("/models/:id/comments", function(req,res) {
+app.post("/models/:id/comments", isLoggedIn, function(req,res) {
   Model3D.findById(req.params.id, function(error,model) {
     if(error) {
       console.log(error);
@@ -150,7 +155,7 @@ app.post("/login", passport.authenticate("local",
 });
 
 // logout route
-app.get("logout", function(req,res) {
+app.get("/logout", function(req,res) {
   req.logout();
   res.redirect("/models");
 });
