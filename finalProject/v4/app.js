@@ -82,7 +82,7 @@ app.get("/models/:id", function(req,res) {
 });
 
 // ========== Comment Routes ==========
-app.get("/models/:id/comments/new", function(req,res) {
+app.get("/models/:id/comments/new", isLoggedIn, function(req,res) {
   Model3D.findById(req.params.id, function(error, model) {
     if(error) console.log(error);
     else res.render("comments/newComment.ejs", {model:model});
@@ -136,6 +136,32 @@ app.post("/register", function(req,res) {
     });
   });
 });
+
+// login form
+app.get("/login", function(req,res) {
+  res.render("login.ejs");
+});
+
+app.post("/login", passport.authenticate("local", 
+  {
+    successRedirect: "/models",
+    failureRedirect: "/login"
+  }), function(req,res) {
+});
+
+// logout route
+app.get("logout", function(req,res) {
+  req.logout();
+  res.redirect("/models");
+});
+
+function isLoggedIn(req,res,next) {
+  if(req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/login");
+  }
+}
 
 
 // listen function for the app to determine where to host the server
