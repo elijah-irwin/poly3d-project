@@ -11,7 +11,8 @@ var express       = require("express"),
 var modelRoutes   = require("./routes/models.js"),
     commentRoutes = require("./routes/comments.js"),
     authRoutes    = require("./routes/auth.js"),
-    uploadRoutes  = require("./routes/uploads.js");
+    uploadRoutes    = require("./routes/uploads.js");
+
 // connecting to the database
 mongoose.connect("mongodb://localhost/poly3d", {useNewUrlParser: true});
 
