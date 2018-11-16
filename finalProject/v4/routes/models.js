@@ -6,12 +6,9 @@ var Model3D = require("../schemas/models.js");
 // localhost:3000/models
 router.get("/models", function(req,res) {
   // searching for all the models in the database
-  Model3D.find({}, function(error, allModels) {
-    if(error) console.log(error);
-    else {
+
       res.render("models/models.ejs", {models: allModels});
-    }
-  });
+    
 });
 
 // post route for adding newmodel to the array

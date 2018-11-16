@@ -1,6 +1,7 @@
 var mongoose  = require("mongoose");
 var Model3D   = require("./schemas/models.js");
 var Comment   = require("./schemas/comments.js");
+var Uploads   = require("./schemas/uploads.js");
 
 // test data
 var data = [

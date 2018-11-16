@@ -25,6 +25,8 @@
             <a class="nav-item nav-link" href="/register">Register</a>
           <% } else { %>
             <a  class="nav-item nav-link disabled href="#">Profile: <%= currentUser.username %></a>
+            <a class="nav-item nav-link" href="/edit_profile">Edit Profile</a>
+            <a class="nav-item nav-link" href="/upload">Upload</a>
             <a class="nav-item nav-link" href="/logout">Logout</a>
           <% } %>
         </div>

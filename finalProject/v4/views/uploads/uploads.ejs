@@ -1,0 +1,35 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+  <h1 style="text-align: center; padding: 20px;">Upload a Picture</h1>
+
+
+  <div class="row">
+    <div style="margin: 0 auto; width:50%">
+
+      <form action="/uploads" method="post">
+        <div class="form-group">
+          <input type="text" name="title" placeholder="title"
+          class="form-control">
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="description" placeholder="description" 
+          class="form-control">
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="tags" placeholder="tags" 
+          class="form-control">
+        </div>
+//change href here
+        <button type="submit" class="btn btn-primary btn-block"
+        style="margin-bottom:5px;" href="/uploads/new">Upload File</button> 
+      </form>
+
+    </div>
+  </div>
+ 
+</div>
+
+<% include ../partials/footer.ejs %>
