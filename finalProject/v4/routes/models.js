@@ -14,15 +14,22 @@ router.get("/models", function(req,res) {
   });
 });
 
-// post route for adding newmodel to the array
-router.post("/models", function(req,res) {
+// post route for adding newmodel
+router.post("/models", isLoggedIn, function(req,res) {
   var title = req.body.title;
   var image = req.body.image;
   var description = req.body.description;
-  var newModel = {title: title, image: image, description: description};
+  var author = {id: req.user._id, username: req.user.username}
+  var newModel = {
+    title: title, 
+    image: image, 
+    description: description,
+    author: author
+  };
   Model3D.create(newModel, function(error, new3dModel) {
     if(error) console.log(error);
     else {
+      console.log(new3dModel);
       res.redirect("/models");
     }
   });
@@ -30,7 +37,7 @@ router.post("/models", function(req,res) {
 
 // add new model page route
 // localhost:3000/models/new
-router.get("/models/new", function(req,res) {
+router.get("/models/new", isLoggedIn, function(req,res) {
   res.render("models/newModel.ejs");
 });
 
@@ -43,5 +50,13 @@ router.get("/models/:id", function(req,res) {
     }
   });
 });
+
+function isLoggedIn(req,res,next) {
+  if(req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect("/login");
+  }
+}
 
 module.exports = router;
