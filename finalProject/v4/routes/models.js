@@ -51,6 +51,25 @@ router.get("/models/:id", function(req,res) {
   });
 });
 
+// EDIT MODEL ROUTE
+router.get("/models/:id/edit", function(req,res) {
+  Model3D.findById(req.params.id, function(error, foundModel) {
+    if(error) res.redirect("/models");
+    else res.render("models/edit.ejs", {model: foundModel});
+  });
+});
+
+// UPDATE MODEL ROUTE
+router.put("/models/:id", function(req,res) {
+  Model3D.findByIdAndUpdate(req.params.id, req.body.model, 
+    function(error, updatedModel) {
+      if(error) res.redirect("/models");
+      else {
+        res.redirect("/models/" + req.params.id);
+      }
+    });
+});
+
 function isLoggedIn(req,res,next) {
   if(req.isAuthenticated()) {
     return next();

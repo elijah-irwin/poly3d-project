@@ -5,6 +5,7 @@
   <img src="<%= model.image %>" alt="" style="width: 100%;">
   <p>Artist: <%= model.author.username %></p>
   <p><%= model.description %></p>
+  <p><a href="/models/<%= model._id %>/edit" class="btn btn-secondary">Edit</a></p>
 
   <p>
     <a href="/models/<%= model._id %>/comments/new" class="btn btn-primary">

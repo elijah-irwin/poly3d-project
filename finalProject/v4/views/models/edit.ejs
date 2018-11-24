@@ -1,0 +1,33 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+  <h1 style="text-align: center; padding: 20px;">Edit: <%= model.title %></h1>
+  <div class="row">
+    <div style="margin: 0 auto; width:50%">
+
+      <form action="/models/<%= model._id %>/?_method=PUT" method="post">
+        <div class="form-group">
+          <input type="text" name="model[title]" value="<%= model.title %>" 
+          class="form-control">
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="model[image]" value="<%= model.image %>" 
+          class="form-control">
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="model[description]" value="<%= model.description %>"
+          class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"
+        style="margin-bottom:5px;">Submit</button>
+      </form>
+
+      <a href="/models">Go back</a>
+
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer.ejs %>

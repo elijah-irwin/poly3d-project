@@ -6,7 +6,8 @@ var express       = require("express"),
     passport      = require("passport"),
     LocalStrategy = require("passport-local"),
     seedDB        = require("./seed.js"),
-    User          = require("./schemas/users.js");
+    User          = require("./schemas/users.js"),
+    override      = require("method-override");
 
 var modelRoutes   = require("./routes/models.js"),
     commentRoutes = require("./routes/comments.js"),
@@ -19,6 +20,7 @@ mongoose.connect("mongodb://localhost/poly3d", {useNewUrlParser: true});
 // enables the body parser for json 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+app.use(override("_method"));
 
 // calling our seedDB function to populate the db with test data
 // seedDB();
