@@ -70,6 +70,14 @@ router.put("/models/:id", function(req,res) {
     });
 });
 
+// DESTROY MODEL ROUTE
+router.delete("/models/:id", function(req,res) {
+  Model3D.findByIdAndRemove(req.params.id, function(error) {
+    if(error) res.redirect("/models");
+    else res.redirect("/models");
+  })
+});
+
 function isLoggedIn(req,res,next) {
   if(req.isAuthenticated()) {
     return next();
