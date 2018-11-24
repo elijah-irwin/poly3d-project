@@ -52,15 +52,14 @@ router.get("/models/:id", function(req,res) {
 });
 
 // EDIT MODEL ROUTE
-router.get("/models/:id/edit", function(req,res) {
+router.get("/models/:id/edit", checkModelOwnership, function(req,res) {
   Model3D.findById(req.params.id, function(error, foundModel) {
-    if(error) res.redirect("/models");
-    else res.render("models/edit.ejs", {model: foundModel});
+    res.render("models/edit.ejs", {model: foundModel});
   });
 });
 
 // UPDATE MODEL ROUTE
-router.put("/models/:id", function(req,res) {
+router.put("/models/:id", checkModelOwnership, function(req,res) {
   Model3D.findByIdAndUpdate(req.params.id, req.body.model, 
     function(error, updatedModel) {
       if(error) res.redirect("/models");
@@ -71,7 +70,7 @@ router.put("/models/:id", function(req,res) {
 });
 
 // DESTROY MODEL ROUTE
-router.delete("/models/:id", function(req,res) {
+router.delete("/models/:id", checkModelOwnership, function(req,res) {
   Model3D.findByIdAndRemove(req.params.id, function(error) {
     if(error) res.redirect("/models");
     else res.redirect("/models");
@@ -83,6 +82,23 @@ function isLoggedIn(req,res,next) {
     return next();
   } else {
     res.redirect("/login");
+  }
+}
+
+function checkModelOwnership(req,res,next) {
+  if(req.isAuthenticated()) {
+    Model3D.findById(req.params.id, function(error, foundModel) {
+      if(error) res.redirect("back");
+      else {
+        if(foundModel.author.id.equals(req.user._id)) {
+          next();
+        } else {
+          res.redirect("back");
+        }
+      }
+    });
+  } else {
+    res.redirect("back");
   }
 }
 
