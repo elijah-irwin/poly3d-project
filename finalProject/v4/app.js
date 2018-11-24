@@ -7,7 +7,8 @@ var express       = require("express"),
     LocalStrategy = require("passport-local"),
     seedDB        = require("./seed.js"),
     User          = require("./schemas/users.js"),
-    override      = require("method-override");
+    override      = require("method-override"),
+    flash         = require("connect-flash");
 
 var modelRoutes   = require("./routes/models.js"),
     commentRoutes = require("./routes/comments.js"),
@@ -21,6 +22,7 @@ mongoose.connect("mongodb://localhost/poly3d", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(override("_method"));
+app.use(flash());
 
 // calling our seedDB function to populate the db with test data
 // seedDB();
@@ -41,6 +43,8 @@ passport.deserializeUser(User.deserializeUser());
 // makes each route have access to current user data
 app.use(function(req,res,next) {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 

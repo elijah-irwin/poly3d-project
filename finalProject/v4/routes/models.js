@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var Model3D = require("../schemas/models.js");
+var middleware = require("../middleware/index.js");
 
 // models page route
 // localhost:3000/models
@@ -15,7 +16,7 @@ router.get("/models", function(req,res) {
 });
 
 // post route for adding newmodel
-router.post("/models", isLoggedIn, function(req,res) {
+router.post("/models", middleware.isLoggedIn, function(req,res) {
   var title = req.body.title;
   var image = req.body.image;
   var description = req.body.description;
@@ -30,6 +31,7 @@ router.post("/models", isLoggedIn, function(req,res) {
     if(error) console.log(error);
     else {
       console.log(new3dModel);
+      req.flash("success", "New model successfully added.");
       res.redirect("/models");
     }
   });
@@ -37,7 +39,7 @@ router.post("/models", isLoggedIn, function(req,res) {
 
 // add new model page route
 // localhost:3000/models/new
-router.get("/models/new", isLoggedIn, function(req,res) {
+router.get("/models/new", middleware.isLoggedIn, function(req,res) {
   res.render("models/newModel.ejs");
 });
 
@@ -52,54 +54,33 @@ router.get("/models/:id", function(req,res) {
 });
 
 // EDIT MODEL ROUTE
-router.get("/models/:id/edit", checkModelOwnership, function(req,res) {
+router.get("/models/:id/edit", middleware.checkModelOwnership, function(req,res) {
   Model3D.findById(req.params.id, function(error, foundModel) {
     res.render("models/edit.ejs", {model: foundModel});
   });
 });
 
 // UPDATE MODEL ROUTE
-router.put("/models/:id", checkModelOwnership, function(req,res) {
+router.put("/models/:id", middleware.checkModelOwnership, function(req,res) {
   Model3D.findByIdAndUpdate(req.params.id, req.body.model, 
     function(error, updatedModel) {
       if(error) res.redirect("/models");
       else {
+        req.flash("success", "Model successfully updated.");
         res.redirect("/models/" + req.params.id);
       }
     });
 });
 
 // DESTROY MODEL ROUTE
-router.delete("/models/:id", checkModelOwnership, function(req,res) {
+router.delete("/models/:id", middleware.checkModelOwnership, function(req,res) {
   Model3D.findByIdAndRemove(req.params.id, function(error) {
     if(error) res.redirect("/models");
-    else res.redirect("/models");
-  })
+    else {
+      req.flash("success", "Model successfully deleted.");
+      res.redirect("/models");
+    }
+  });
 });
-
-function isLoggedIn(req,res,next) {
-  if(req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect("/login");
-  }
-}
-
-function checkModelOwnership(req,res,next) {
-  if(req.isAuthenticated()) {
-    Model3D.findById(req.params.id, function(error, foundModel) {
-      if(error) res.redirect("back");
-      else {
-        if(foundModel.author.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect("back");
-        }
-      }
-    });
-  } else {
-    res.redirect("back");
-  }
-}
 
 module.exports = router;

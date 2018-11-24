@@ -20,12 +20,13 @@ router.post("/register", function(req,res) {
   // from the form data
   User.register(newUser, req.body.password, function(error,user) {
     if(error) {
-      console.log(error);
+      req.flash("error", err.message + ".");
       return res.render("register.ejs");
     }
 
     // if register sucessful, redirect to the models page
     passport.authenticate("local")(req,res,function() {
+      req.flash("success", user.username + " has successfully logged in.");
       res.redirect("/models")
     });
   });
@@ -39,22 +40,17 @@ router.get("/login", function(req,res) {
 router.post("/login", passport.authenticate("local", 
   {
     successRedirect: "/models",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    successFlash: "Successfully logged in.",
+    failureFlash: true
   }), function(req,res) {
 });
 
 // logout route
 router.get("/logout", function(req,res) {
   req.logout();
+  req.flash("success", "Successfully logged out.");
   res.redirect("/models");
 });
-
-function isLoggedIn(req,res,next) {
-  if(req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect("/login");
-  }
-}
 
 module.exports = router;
