@@ -20,6 +20,11 @@ router.post("/models/:id/comments", isLoggedIn, function(req,res) {
       Comment.create(req.body.comment, function(error,comment) {
         if(error) console.log(error);
         else {
+          // add username and id to comment
+          comment.author.id = req.user._id;
+          comment.author.username = req.user.username;
+          comment.save();
+
           model.comments.push(comment);
           model.save();
           res.redirect("/models/" + model._id);

@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 
 // calling our seedDB function to populate the db with test data
-seedDB();
+// seedDB();
 
 // ========== PASSPORT (LOGIN) STUFF ================
 app.use(require("express-session")({

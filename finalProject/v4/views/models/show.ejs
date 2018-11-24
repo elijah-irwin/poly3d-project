@@ -12,7 +12,7 @@
   </p>
 
   <% model.comments.forEach(function(comment) { %>
-    <p><%= comment.text %> - <strong><%= comment.author %></strong></p>
+    <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
   <% }); %>
 
   <p><a href="/models">Go Back</a></p>
