@@ -97,6 +97,10 @@
   margin-bottom: 10px;
 }
 
+#viewModelBtn {
+  margin-top:10px;
+}
+
 #commentsArea {
   box-shadow: 0px 0px 2px #555 inset; 
   border-radius: 5px;

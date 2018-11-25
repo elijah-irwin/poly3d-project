@@ -15,6 +15,7 @@
           <button class="btn btn-danger btn-sm">Delete</button>
         </form>
       <% } %>
+      <p id="viewModelBtn"><a href="/viewer/<%= model._id %>" target="_blank" class="btn btn-primary btn-sm">View 3D-Model</a></p>
     </div>
 
     <div class="col-md-9">
@@ -28,18 +29,16 @@
     <div class="col-md-9">
       <p id="addNewCommentBtn"><a href="/models/<%= model._id %>/comments/new" class="btn btn-primary btn-sm">Add New Comment</a></p>
       <div id="commentsArea">
+        <% if(model.comments.length == 0) { %>
+          <div>There are no comments yet!</div>
+        <% } %>
         <% model.comments.forEach(function(comment) { %>
           <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
         <% }); %>
       </div>
     </div>
   </div>
-  <p><a href="/viewer/<%= model._id %>" class="btn btn-primary">View 3D-Model</a></p>
 
-  <p><a href="/models/<%= model._id %>/comments/new" class="btn btn-primary">Add New Comment</a></p>
-  <% model.comments.forEach(function(comment) { %>
-    <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
-  <% }); %>
 </div>
 
 <% include ../partials/footer.ejs %>
