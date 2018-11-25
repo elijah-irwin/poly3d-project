@@ -17,7 +17,8 @@ var modelSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Comment"
     }
-  ]
+  ],
+  date: Date
 });
 
 // assigning that schema to a var we can use to create objects

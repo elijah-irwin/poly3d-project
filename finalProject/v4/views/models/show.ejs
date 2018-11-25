@@ -1,22 +1,39 @@
 <% include ../partials/header.ejs %>
 
 <div class="container">
-  <h1><%= model.title %></h1>
-  <img src="<%= model.image %>" alt="" style="width: 100%;">
-  <a href="/users/<%= model.author.id %>">Artist: <%= model.author.username %></a>
-  <p><%= model.description %></p>
-  
-  <% if(currentUser && model.author.id.equals(currentUser._id)) { %>
-    <p><a href="/models/<%= model._id %>/edit" class="btn btn-secondary">Edit</a></p>
-    <form action="/models/<%= model._id %>?_method=DELETE" method="POST">
-      <button class="btn btn-danger">Delete</button>
-    </form>
-  <% } %>
+  <div class="row">
+    <div class="col-md-3">
+      <h1>Info</h1>
+      <div><strong>Artist: </strong><a href="/users/<%= model.author.id %>"><%= model.author.username %></a></div>
+      <div><strong>Description: </strong><%= model.description %></div>
+      <div id="date"><strong>Date Added: </strong>
+        <%= model.date.getDate() %>-<%= model.date.getMonth() +1 %>-<%= model.date.getFullYear() %>
+      </div>
+      <% if(currentUser && model.author.id.equals(currentUser._id)) { %>
+        <p class="inlineButtons"><a href="/models/<%= model._id %>/edit" class="btn btn-secondary btn-sm">Edit</a></p>
+        <form action="/models/<%= model._id %>?_method=DELETE" method="POST" class="inlineButtons">
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      <% } %>
+    </div>
 
-  <p><a href="/models/<%= model._id %>/comments/new" class="btn btn-primary">Add New Comment</a></p>
-  <% model.comments.forEach(function(comment) { %>
-    <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
-  <% }); %>
+    <div class="col-md-9">
+      <h1><%= model.title %></h1>
+      <img src="<%= model.image %>" id="showModelImg">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <p id="addNewCommentBtn"><a href="/models/<%= model._id %>/comments/new" class="btn btn-primary btn-sm">Add New Comment</a></p>
+      <div id="commentsArea">
+        <% model.comments.forEach(function(comment) { %>
+          <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
+        <% }); %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <% include ../partials/footer.ejs %>

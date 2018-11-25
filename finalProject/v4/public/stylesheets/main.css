@@ -2,6 +2,8 @@
   margin-bottom:30px;
 }
 
+/* USER PROFILE PAGE STUFF */
+
 #profilePicture {
   width: 100%;
   border: 5px solid white;
@@ -15,7 +17,6 @@
   background-repeat: no-repeat;
   background-size:cover;
   margin-bottom:20px;
-  box-shadow: 0px 0px 5px #555 inset; 
 }
 
 #bannerUserName {
@@ -31,7 +32,7 @@
   font-size:1.2em;
   padding:40px;
   text-align: center;
-  box-shadow: 0px 0px 5px #555 inset; 
+  box-shadow: 0px 0px 3px #555 inset; 
 }
 
 #profilePicture {
@@ -45,16 +46,59 @@
   padding:15px 0px;
 }
 
-#contentWrap {
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px #555 inset; 
-}
 
 #commissionBtn {
   text-align: center;
   padding-top: 35px;
 }
 
+/* MODELS PAGE */
+#modelsHeader {
+  font-size: 3em;
+  text-align: center;
+  text-shadow: 5px 5px 0px rgba(0,0,0,0.3);
+  color: white;
+
+}
+
+.modelsHeaderImage {
+  background-image: url("../assets/modelsHeaderImg.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 #modelTitle {
   overflow: hidden;
+  font-size:1.7em;
+  padding-bottom: 5px;
+}
+
+#moreInfoButton {
+  margin-bottom: 10px;
+}
+
+/* SHOW MODEL PAGE */
+#specificModelTitle {
+  font-size: 3em;
+  padding-bottom: 10px;
+}
+
+#showModelImg {
+  width:100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.inlineButtons {
+  display:inline;
+}
+
+#date {
+  margin-bottom: 10px;
+}
+
+#commentsArea {
+  box-shadow: 0px 0px 2px #555 inset; 
+  border-radius: 5px;
+  padding: 20px;
 }

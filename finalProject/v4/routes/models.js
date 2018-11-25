@@ -21,11 +21,13 @@ router.post("/models", middleware.isLoggedIn, function(req,res) {
   var image = req.body.image;
   var description = req.body.description;
   var author = {id: req.user._id, username: req.user.username}
+  var date = new Date();
   var newModel = {
     title: title, 
     image: image, 
     description: description,
-    author: author
+    author: author,
+    date: date
   };
   Model3D.create(newModel, function(error, new3dModel) {
     if(error) console.log(error);

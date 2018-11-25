@@ -1,24 +1,22 @@
 <% include ../partials/header.ejs %>
 
 <div class="container">
-  <header class="jumbotron" style="margin-top:30px;">
+  <header class="jumbotron modelsHeaderImage" style="margin-top:30px;">
     <div class="container">
-      <h1>Models Page</h1>
+      <h1 id="modelsHeader">Our Models</h1>
     </div>
   </header> 
 
   <div class="row" style="display:flex; flex-wrap: wrap;">
     <% models.forEach(function(model) { %>
-      <div class="col-sm-6 col-md-4">
+      <div class="col-sm-6 col-md-3">
         <div class="img-thumbnail" style="margin-bottom: 10px; text-align: center;">
           <img src="<%= model.image %>" class="img-fluid;" 
           style="max-width: 100%; height: auto;">
           <div class="caption" style="padding-top:10px;">
             <h4 id="modelTitle"><%= model.title %></h4>
           </div>
-          <p>
-            <a href="/models/<%= model._id %>" class="btn btn-primary">More Info</a>
-          </p>
+          <a href="/models/<%= model._id %>" class="btn btn-primary" id="moreInfoButton">More Info</a>
         </div>
       </div>
     <% }); %>
