@@ -1,0 +1,29 @@
+body {
+  text-align: center;
+  color:white;
+}
+
+.backImage {
+  background-image: url("../assets/homeImg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  height:100vh;
+}
+
+h1 {
+  font-size:4em;
+  padding-top:300px;
+  padding-bottom:20px;
+}
+
+.info {
+  font-size:1.2em;
+}
+
+.footer {
+  position: absolute;
+  bottom:0;
+  
+}
+
+

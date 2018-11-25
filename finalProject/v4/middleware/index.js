@@ -8,7 +8,7 @@ middlewareObj.checkModelOwnership = function(req,res,next) {
       if(error) res.redirect("back");
       else {
 
-        if (!foundCampground) {
+        if (!foundModel) {
           req.flash("error", "Item not found.");
           return res.redirect("back");
         }
@@ -31,7 +31,7 @@ middlewareObj.isLoggedIn = function(req,res,next) {
   if(req.isAuthenticated()) {
     return next();
   } else {
-    req.flash("error", "Pleas login to do that.");
+    req.flash("error", "Please login to do that.");
     res.redirect("/login");
   } 
 }
