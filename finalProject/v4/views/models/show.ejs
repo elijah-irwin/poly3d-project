@@ -17,6 +17,7 @@
       <% } %>
     </div>
 
+<<<<<<< HEAD
     <div class="col-md-9">
       <h1><%= model.title %></h1>
       <img src="<%= model.image %>" id="showModelImg">
@@ -34,6 +35,14 @@
       </div>
     </div>
   </div>
+=======
+  <p><a href="/viewer/<%= model._id %>" class="btn btn-primary">View 3D-Model</a></p>
+
+  <p><a href="/models/<%= model._id %>/comments/new" class="btn btn-primary">Add New Comment</a></p>
+  <% model.comments.forEach(function(comment) { %>
+    <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
+  <% }); %>
+>>>>>>> 944b14d5de88ce7ac538f2a0dea133e678f02f40
 </div>
 
 <% include ../partials/footer.ejs %>

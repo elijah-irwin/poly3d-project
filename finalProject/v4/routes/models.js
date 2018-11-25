@@ -22,12 +22,14 @@ router.post("/models", middleware.isLoggedIn, function(req,res) {
   var description = req.body.description;
   var author = {id: req.user._id, username: req.user.username}
   var date = new Date();
+  var objFile = req.body.objFile;
   var newModel = {
     title: title, 
     image: image, 
     description: description,
     author: author,
-    date: date
+    date: date,
+    file: objFile
   };
   Model3D.create(newModel, function(error, new3dModel) {
     if(error) console.log(error);
