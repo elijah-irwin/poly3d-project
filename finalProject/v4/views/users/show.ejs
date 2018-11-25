@@ -3,8 +3,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div id="bannerDiv" style="background-image: url('<%= currentUser.bannerPicture %>')">
-        <h1 id="bannerUserName"><%= currentUser.firstName %>'s Works</h1>
+      <div id="bannerDiv" style="background-image: url('<%= user.bannerPicture %>')">
+        <h1 id="bannerUserName"><%= user.firstName %>'s Works</h1>
       </div>
     </div>
   </div>
@@ -12,11 +12,11 @@
   <div class="row">
     <div class="col-md-4">
       <div id="infoWrap">
-        <img id="profilePicture" src="<%= currentUser.profilePicture %>" alt="">
-        <div id="userName"><%= currentUser.firstName %> <%= currentUser.lastName %></div>
-        <div><strong>Bio: </strong><%= currentUser.bio %></div>
+        <img id="profilePicture" src="<%= user.profilePicture %>" alt="">
+        <div id="userName"><%= user.firstName %> <%= user.lastName %></div>
+        <div><strong>Bio: </strong><%= user.bio %></div>
         <div><strong>Date Joined: </strong> 
-          <%= currentUser.dateJoined.getDate() %>-<%= currentUser.dateJoined.getMonth() +1 %>-<%= currentUser.dateJoined.getFullYear() %> 
+          <%= user.dateJoined.getDate() %>-<%= user.dateJoined.getMonth() +1 %>-<%= user.dateJoined.getFullYear() %> 
         </div>
         <p id="commissionBtn"><a href="#" class=" btn btn-success" >Request Commission!</a></p>
       </div>

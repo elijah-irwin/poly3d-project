@@ -8,13 +8,10 @@ var User = require("../schemas/users.js");
 
 router.get("/users/:id", function(req,res) {
   User.findById(req.params.id, function(error, user) {
-    console.log(user);
     var userName = user.username;
-    console.log(userName);
-
     Model3D.find({"author.username": userName}, function(error, foundModels) {
       if(error) console.log(error);
-      else res.render("users/show.ejs", {models: foundModels});
+      else res.render("users/show.ejs", {models: foundModels, user: user});
     });
   });
 });
