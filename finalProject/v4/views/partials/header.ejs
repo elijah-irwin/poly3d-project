@@ -10,7 +10,8 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Poly3D</a>
+    <div class="container">
+      <a class="navbar-brand" href="/models">Poly3D</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,25 +25,25 @@
             <a class="nav-item nav-link" href="/login">Login</a>
             <a class="nav-item nav-link" href="/register">Register</a>
           <% } else { %>
-            <a  class="nav-item nav-link disabled href="#">Profile: <%= currentUser.username %></a>
-            <a class="nav-item nav-link" href="/edit_profile">Edit Profile</a>
-            <a class="nav-item nav-link" href="/upload">Upload</a>
+            <a class="nav-item nav-link" href="/users/<%= currentUser._id %>">Profile: <%= currentUser.username %></a>
+            <a class="nav-item nav-link" href="/models/new">Upload</a>
             <a class="nav-item nav-link" href="/logout">Logout</a>
           <% } %>
         </div>
       </div>
-    </nav>
-
-    <div class="container">
-      <% if(error && error.length > 0) { %>
-        <div class="alert alert-danger" role="alert">
-          <%= error %>
-        </div>
-      <% } %>
-
-      <% if(success && success.length > 0) { %>
-      <div class="alert alert-success" role="alert">
-        <%= success %>
-      </div>
-      <% } %>
     </div>
+  </nav>
+
+  <div class="container">
+    <% if(error && error.length > 0) { %>
+      <div class="alert alert-danger flashMessage" role="alert">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <% if(success && success.length > 0) { %>
+    <div class="alert alert-success flashMessage" role="alert">
+      <%= success %>
+    </div>
+    <% } %>
+  </div>

@@ -1,0 +1,45 @@
+<% include ../partials/header.ejs %>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="bannerDiv" style="background-image: url('<%= currentUser.bannerPicture %>')">
+        <h1 id="bannerUserName"><%= currentUser.firstName %>'s Works</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div id="infoWrap">
+        <img id="profilePicture" src="<%= currentUser.profilePicture %>" alt="">
+        <div id="userName"><%= currentUser.firstName %> <%= currentUser.lastName %></div>
+        <div><strong>Bio: </strong><%= currentUser.bio %></div>
+        <div><strong>Date Joined: </strong> 
+          <%= currentUser.dateJoined.getDate() %>-<%= currentUser.dateJoined.getMonth() +1 %>-<%= currentUser.dateJoined.getFullYear() %> 
+        </div>
+        <p id="commissionBtn"><a href="#" class=" btn btn-success" >Request Commission!</a></p>
+      </div>
+    </div>
+
+    <% models.forEach(function(model) { %>
+      <div class="col-md-4">
+        <div class="img-thumbnail" style="margin-bottom: 10px; text-align: center;">
+          <img src="<%= model.image %>" class="img-fluid;" 
+          style="max-width: 100%; height: auto;">
+          <div class="caption" style="padding-top:10px;">
+            <h4 id="modelTitle"><%= model.title %></h4>
+          </div>
+          <p>
+            <a href="/models/<%= model._id %>" class="btn btn-primary">More Info</a>
+          </p>
+        </div>
+      </div>
+    <% }); %>
+
+  </div>
+</div>
+
+
+
+<% include ../partials/footer.ejs %>

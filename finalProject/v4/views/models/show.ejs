@@ -17,8 +17,6 @@
   <% model.comments.forEach(function(comment) { %>
     <p><%= comment.text %> - <strong><%= comment.author.username %></strong></p>
   <% }); %>
-
-  <p><a href="/models">Go Back</a></p>
 </div>
 
 <% include ../partials/footer.ejs %>

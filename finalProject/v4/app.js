@@ -13,7 +13,8 @@ var express       = require("express"),
 var modelRoutes   = require("./routes/models.js"),
     commentRoutes = require("./routes/comments.js"),
     authRoutes    = require("./routes/auth.js"),
-    uploadRoutes    = require("./routes/uploads.js");
+    uploadRoutes  = require("./routes/uploads.js"),
+    profileRoutes = require("./routes/profile.js");
 
 // connecting to the database
 mongoose.connect("mongodb://localhost/poly3d", {useNewUrlParser: true});
@@ -53,6 +54,7 @@ app.use(modelRoutes);
 app.use(commentRoutes);
 app.use(authRoutes);
 app.use(uploadRoutes);
+app.use(profileRoutes);
 
 // home page route
 // localhost:3000

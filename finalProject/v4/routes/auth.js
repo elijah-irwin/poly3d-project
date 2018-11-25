@@ -14,7 +14,15 @@ router.get("/register", function(req,res) {
 router.post("/register", function(req,res) {
   
   // create new User with username from form data
-  var newUser = new User({username: req.body.username});
+  var newUser = new User({
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    profilePicture: "https://img2.cgtrader.com/items/810652/dbc7c52552/large/low-poly-tree-3d-model-low-poly-animated-rigged-obj-3ds-fbx-blend-dae-mtl.png",
+    bannerPicture: "https://cdn1.epicgames.com/ue/product/Screenshot/LowPolySeriesLandscape_Screenshot_04-1920x1080-bfd8f8bff82a6ac07417847b10f1bbd9.jpg",
+    bio: "There's nothing here!",
+    dateJoined: new Date()   
+  });
 
   // register the new user with that new User object and the password
   // from the form data
