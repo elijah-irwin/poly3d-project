@@ -8,13 +8,16 @@ var express       = require("express"),
     seedDB        = require("./seed.js"),
     User          = require("./schemas/users.js"),
     override      = require("method-override"),
-    flash         = require("connect-flash");
+    flash         = require("connect-flash"),
+    path          = require('path');
 
 var modelRoutes   = require("./routes/models.js"),
     commentRoutes = require("./routes/comments.js"),
     authRoutes    = require("./routes/auth.js"),
     uploadRoutes  = require("./routes/uploads.js"),
-    profileRoutes = require("./routes/profile.js");
+    profileRoutes = require("./routes/profile.js"),
+    viewerRoutes  = require("./routes/viewer.js");
+
 
 // connecting to the database
 mongoose.connect("mongodb://localhost/poly3d", {useNewUrlParser: true});
@@ -55,6 +58,8 @@ app.use(commentRoutes);
 app.use(authRoutes);
 app.use(uploadRoutes);
 app.use(profileRoutes);
+app.use(viewerRoutes);
+app.use(express.static(path.join(__dirname, 'MV')))
 
 // home page route
 // localhost:3000
