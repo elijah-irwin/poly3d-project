@@ -51,6 +51,27 @@
 			// mtlLoader.setPath('../obj/flower/');
 			// mtlLoader.load('Poinsetta.mtl', function (materials) {
 
+				var fontloader = new THREE.FontLoader();
+				fontloader.load("../obj/textfont.json", function ( font ) {
+
+				var geometry = new THREE.TextGeometry( 'Loading...', {
+					font: font,
+					size: 80,
+					height: 5,
+					curveSegments: 12,
+					bevelEnabled: true,
+					bevelThickness: 10,
+					bevelSize: 8,
+					bevelSegments: 5
+					
+				} );
+				var object = new THREE.Mesh(geometry, material1);
+				object.scale.set(0.05,0.05,0.05);
+				object.position.set(-11,0,0);
+				object.name = "load";
+				scene.add(object);
+
+
 			//     materials.preload();
 				var objLoader = new THREE.OBJLoader();
 				//objLoader.setMaterials(materials);
@@ -65,12 +86,20 @@
 							child.material = material1;
 						}
 					});
+					
 					scene.add( object );
+					var objectn = scene.getObjectByName( "load" );
+					scene.remove(objectn)
+					
+					
 				},// called when loading is in progresses
 				function ( xhr ) {
 
 					console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+					
 
+					} );
+					
 				},
 				// called when loading has errors
 				function ( error ) {
@@ -78,7 +107,7 @@
 					console.log( 'An error happened' );
 
 				});
-
+				
 			//});
 			//scene.add( cube );
 
