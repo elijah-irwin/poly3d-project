@@ -12,18 +12,17 @@ body {
 
 h1 {
   font-size:4em;
-  padding-top:300px;
+  padding-top:250px;
   padding-bottom:20px;
 }
 
 .info {
-  font-size:1.2em;
+  font-size:1.3em;
 }
 
 .footer {
   position: absolute;
   bottom:0;
-  
 }
 
 
